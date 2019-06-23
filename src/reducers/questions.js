@@ -20,6 +20,7 @@ export default function questions (state={}, action) {
         //     }
         case ADD_QUESTION :
             const { question } = action
+            const authedUser = question.author;
             return {
                 ...state,
                 [action.question.id]: question,

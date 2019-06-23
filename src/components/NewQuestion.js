@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
-import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class NewQuestion extends Component {
     state = {
@@ -11,7 +11,6 @@ class NewQuestion extends Component {
 
     handleChangeOne = (e) => {
         const optionOne = e.target.value
-
         this.setState(() => ({
             optionOne
         }))
@@ -19,7 +18,6 @@ class NewQuestion extends Component {
 
     handleChangeTwo = (e) => {
         const optionTwo = e.target.value
-
         this.setState(() => ({
             optionTwo
         }))
@@ -36,12 +34,14 @@ class NewQuestion extends Component {
             optionOne:'',
             optionTwo:'',
         }))
+
+        this.props.history.push('/')
     }
     render() {
         const { optionOne, optionTwo } = this.state
 
-        const optionOneLeft = 280 - optionOne.length
-        const optionTwoLeft = 280 - optionTwo.length
+        const optionOneLeft = 100 - optionOne.length
+        const optionTwoLeft = 100 - optionTwo.length
         
         return (
             <div>
@@ -52,9 +52,9 @@ class NewQuestion extends Component {
                         value={optionOne}
                         onChange={this.handleChangeOne}
                         className='textarea'
-                        maxLength={280}
+                        maxLength={100}
                     />
-                    {optionOneLeft <= 100 &&(
+                    {optionOneLeft <= 20 &&(
                         <div className='question-length'>
                             {optionOneLeft}
                         </div>
@@ -62,11 +62,11 @@ class NewQuestion extends Component {
                     <textarea
                         placeholder="What's option Two?"
                         value={optionTwo}
-                        onChange={this.handleChangeOne}
+                        onChange={this.handleChangeTwo}
                         className='textarea'
-                        maxLength={280}
+                        maxLength={100}
                     />
-                    {optionTwoLeft <= 100 &&(
+                    {optionTwoLeft <= 20 &&(
                         <div className='question-length'>
                             {optionTwoLeft}
                         </div>
@@ -82,4 +82,4 @@ class NewQuestion extends Component {
     }
 }
 
-export default connect()(NewQuestion)
+export default withRouter(connect()(NewQuestion))

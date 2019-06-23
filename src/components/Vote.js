@@ -12,6 +12,7 @@ class Vote extends Component {
     handleSubmit(e) {
         // alert('Your have voted on option :' + this.state.value);
         e.preventDefault();
+        console.log('Vote submitted');
     }
     
     render() {
