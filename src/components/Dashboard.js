@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
+import { withRouter } from 'react-router-dom'
 
 class Dashboard extends Component {
     render() {
+        const {authedUser, questionIds} = this.props
+        if (authedUser === '') {
+            this.props.history.push('/signin')
+        }    
         return (
             <div>
                 <h3 className='center'>All Questions</h3>
                 <ul className='dashboard-list'>
-                    {this.props.questionIds.map((id) =>(
+                    {questionIds.map((id) =>(
                         <li key={id}>
                             <Question id={id}></Question>
                         </li>
@@ -19,11 +24,12 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps ({ questions }) {
+function mapStateToProps ({ authedUser, questions }) {
     return {
+        authedUser,
         questionIds: Object.keys(questions)
             .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
     }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default withRouter(connect(mapStateToProps)(Dashboard))

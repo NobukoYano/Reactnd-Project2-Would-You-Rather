@@ -38,8 +38,14 @@ class NewQuestion extends Component {
         this.props.history.push('/')
     }
     render() {
-        const { optionOne, optionTwo } = this.state
+        const {authedUser} = this.props
+        console.log('AuthedUser in new Question:', this.props)
+        
+        if (authedUser === '') {
+            this.props.history.push('/signin')
+        }    
 
+        const { optionOne, optionTwo } = this.state
         const optionOneLeft = 100 - optionOne.length
         const optionTwoLeft = 100 - optionTwo.length
         
@@ -81,5 +87,9 @@ class NewQuestion extends Component {
         )
     }
 }
-
-export default withRouter(connect()(NewQuestion))
+function mapStateToProps ({ authedUser }) {
+    return {
+        authedUser,
+    }
+}
+export default withRouter(connect(mapStateToProps)(NewQuestion))

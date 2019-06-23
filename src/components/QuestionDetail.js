@@ -27,7 +27,10 @@ class QuestionDetail extends Component {
 
     render () {
         // console.log('Question: ', this.props)
-        const { question } = this.props
+        const { question, authedUser } = this.props
+        if (authedUser === '') {
+            this.props.history.push('/signin')
+        }
         if (question === null) {
             return <p>This Question doesn't exist.</p>
         }

@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
     render() {
-        const users = this.props.users
+        const {authedUser, users} = this.props
+        if (authedUser === '') {
+            this.props.history.push('/signin')
+        }    
         console.log('Leaderboard:', users)
         return (
             <div>
@@ -37,9 +40,10 @@ class Leaderboard extends Component {
     }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ authedUser, users }) {
     
     return {
+        authedUser,
         users
     }
 }

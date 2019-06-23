@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { withRouter, Link } from 'react-router-dom'
 
+const default_user = 'sarahedo'
+
 class SignIn extends Component {
     state = {
-        id: '',
+        id: default_user,
     }
     handleChange = (e) => {
         const id = e.target.value
@@ -17,29 +19,24 @@ class SignIn extends Component {
     }
     
     handleSubmit = (e) => {
-        // alert('Your have voted on option :' + this.state.value);
-        console.log('onSubmit!')
         e.preventDefault();
         const { dispatch } = this.props
         const { id } = this.state
-        console.log('onSubmit:', id)
         dispatch(setAuthedUser(id))
 
         this.setState(() => ({
-            id: ''
+            id: default_user
         }))
-        console.log('Test')
         this.props.history.goBack();
-
     }
     
     render() {
         const { users } = this.props
         return (
             <Link to="/signin" className='signin'>
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <label>
-                    Please sign in as:
+                        <p>Please sign in as:</p>
                         <select onChange={this.handleChange}>
                             {Object.keys(users).map((key, index) => (
                                 <option key={users[key].id} value={users[key].id}>
@@ -48,7 +45,7 @@ class SignIn extends Component {
                             ))}
                         </select>
                     </label>
-                    <button type="submit">Sign In</button>
+                    <button type="submit" onClick={this.handleSubmit}>Sign In</button>
                 </form>
             </Link>
         )
