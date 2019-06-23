@@ -20,16 +20,25 @@ export default function questions (state={}, action) {
         //     }
         case ADD_QUESTION :
             const { question } = action
-            const authedUser = question.author;
+            // const authedUser = question.author;
             return {
                 ...state,
                 [action.question.id]: question,
             }
 
         case SAVE_ANSWER :
-            // TODO : save question answer
+            // console.log('Save_answer:',action)
+            // console.log('Save Answer state:', state)
+            const { authedUser, qid, answer } = action
             return {
                 ...state,
+                [qid]: {
+                    ...state[qid],
+                    [answer]: {
+                        ...state[qid][answer],
+                        votes: state[qid][answer].votes.concat([authedUser])
+                    }
+                }
             }
 
         default :

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import {
-    PieChart, Pie, Cell, Tooltip, Legend
+    PieChart, Pie, Cell, Tooltip,
   } from 'recharts';
 
 class Result extends Component {

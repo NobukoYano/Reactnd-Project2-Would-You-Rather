@@ -10,16 +10,19 @@ import Result from './Result'
 import Vote from './Vote'
  
 class QuestionDetail extends Component {
-    handleAnswer = (e) => {
+    handleAnswer = (e, selectedOption) => {
         e.preventDefault()
+        console.log('handleAnswer!')
+        console.log('Props:', this.props)
+        
         // TODO: handle Answering question
         
-        // const {dispatch, authedUser, tweet} = this.props;
-        // dispatch(handleToggleTweet({
-        //     id: tweet.id, 
-        //     authedUser: authedUser, 
-        //     hasLiked: tweet.hasLiked,
-        // }))
+        const {dispatch, authedUser, question} = this.props;
+        dispatch(handleSaveAnswer({
+            authedUser: authedUser, 
+            qid: question.id, 
+            answer: selectedOption,
+        }))
     }
 
     render () {
@@ -45,7 +48,7 @@ class QuestionDetail extends Component {
                     </div>
                     {answered 
                             ? <Result id={id}/>
-                            : <Vote id={id} handleAnswer={this.handleAnswer}/>}
+                            : <Vote id={id} onHandleAnswer={this.handleAnswer}/>}
                 </div>
             </div>
         )

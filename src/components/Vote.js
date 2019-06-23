@@ -3,23 +3,71 @@ import { connect } from 'react-redux'
 
 class Vote extends Component {
     state = {
-        value: '',
+        selectedOption: '',
     }
-    handleChange(e) {
-        this.setState({value: e.target.value});
+    handleChange = (e) => {
+        const selectedOption = e.target.value
+        this.setState(() => ({
+            selectedOption: selectedOption
+        }))
+        // console.log('handleChange selected:', this.state)
     }
     
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         // alert('Your have voted on option :' + this.state.value);
         e.preventDefault();
-        console.log('Vote submitted');
+        console.log('Vote submitted:', this.state);
+        
+        const { onHandleAnswer } = this.props
+        const { selectedOption } = this.state
+
+        onHandleAnswer(e, selectedOption)
+
+        this.setState(() => ({
+            selectedOption:'',
+        }))
     }
     
     render() {
-        const { id, optionOne, optionTwo, authedUser } = this.props
+        const { optionOne, optionTwo, } = this.props
         return (
             <div>
+                <h3>Would you rather...</h3>
                 <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label>
+                            <input
+                                type="radio"
+                                name="option"
+                                value="optionOne"
+                                checked={this.state.selectedOption === "optionOne"}
+                                onChange={this.handleChange}
+                            />
+                            {optionOne.text}
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input
+                            type="radio"
+                            name="option"
+                            value="optionTwo"
+                            checked={this.state.selectedOption === "optionTwo"}
+                            onChange={this.handleChange}
+                            />
+                            {optionTwo.text}
+                        </label>
+                    </div>
+
+                    <div>
+                        <button type="submit">
+                            Save
+                        </button>
+                    </div>
+                </form>
+
+                {/* <form onSubmit={this.handleSubmit}>
                     <label>
                     Would you rather ...
                     <select value={this.state.value} onChange={this.handleChange}>
@@ -28,7 +76,7 @@ class Vote extends Component {
                     </select>
                     </label>
                     <input type="submit" value="Submit" />
-                </form>
+                </form> */}
             </div>
         )
     }

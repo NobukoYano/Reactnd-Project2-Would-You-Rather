@@ -1,6 +1,6 @@
 import { saveQuestionAnswer, saveQuestion } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { addQuestionUser } from '../actions/users'
+import { addQuestionUser, saveAnswerUser } from '../actions/users'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_ANSWER = 'SAVE_ANSWER';
@@ -39,7 +39,7 @@ export function receiveQuestions (questions) {
     }
 }
 
-export function saveAnswer ({authedUser, qid, answer}) {
+function saveAnswer ({authedUser, qid, answer}) {
     return {
         type: SAVE_ANSWER,
         authedUser,
@@ -50,12 +50,15 @@ export function saveAnswer ({authedUser, qid, answer}) {
 
 export function handleSaveAnswer (info) {
     return (dispatch) => {
+        console.log('Info:', info)
         dispatch(saveAnswer(info))
+        dispatch(saveAnswerUser(info))
 
         return saveQuestionAnswer(info)
             .catch((e) => {
-                console.warn('Error in saveQuestionAnswer: ', e)
-                dispatch(saveQuestionAnswer(info));
+                console.warn('Error in saving question answer: ', e)
+                dispatch(saveAnswer(info));
+                dispatch(saveAnswerUser(info));
                 alert('There was an error answering the question. Try Again')
             })
     }
