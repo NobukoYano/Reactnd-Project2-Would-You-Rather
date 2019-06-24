@@ -20,6 +20,13 @@ class Question extends Component {
         const {
             name, avatar, timestamp, id, optionOne, optionTwo, answered,
         } = question
+        // const optionOneShort = optionOne.text.length > 30
+        //     ? optionOne.text.substring(30)
+        //     : optionOne
+        // const optionTwoShort = optionTwo.text.length > 30
+        // ? optionTwo.text.substring(30)
+        // : optionTwo
+
         return (
             <div className='question'>
                 <img
@@ -31,8 +38,8 @@ class Question extends Component {
                     <div>
                         <span>{name}</span>
                         <div>{formatDate(timestamp)}</div>
-                        <p>{optionOne.text} ...</p>
-                        <p>{optionTwo.text} ...</p>
+                        <p>1. {optionOne.text}</p>
+                        <p>2. {optionTwo.text}</p>
                     </div>
                     <button onClick={(e) => this.goQuestionDetail(e, id)} className='btn align-left'>Go to details</button>
                 </div>

@@ -128,9 +128,9 @@ li {
   font-size: 12px;
 }
 .question-info > div > p {
-  font-size: 15px;
+  font-size: 14px;
   margin: 10px 0;
-  width: 330px;
+  max-width: 330px;
 }
 .question-icons {
   display: flex;

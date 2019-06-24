@@ -17,14 +17,20 @@ class Result extends Component {
         const renderCustomizedLabel = ({
             cx, cy, midAngle, innerRadius, outerRadius, percent, index,
         }) => {
-            const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+            const radius = 75 + innerRadius + (outerRadius - innerRadius) * 0.5;
             const x = cx + radius * Math.cos(-midAngle * RADIAN);
             const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
             return (
                 <g>
-                    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-                    {`${(percent * 100).toFixed(0)}%`}
+                    <text 
+                        x={x}
+                        y={y}
+                        fill="black"
+                        textAnchor={x > cx ? 'start' : 'end'}
+                        dominantBaseline="central"
+                    >
+                     Option {index+1}:{`${(percent * 100).toFixed(0)}%`}
                     </text>
                 </g>
             );
