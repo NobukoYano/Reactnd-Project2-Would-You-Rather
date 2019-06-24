@@ -48,10 +48,10 @@ class QuestionDetail extends Component {
                     <div>
                         <span>{name}</span>
                         <div>{formatDate(timestamp)}</div>
-                    </div>
                     {answered 
                             ? <Result id={id}/>
                             : <Vote id={id} onHandleAnswer={this.handleAnswer}/>}
+                    </div>
                 </div>
             </div>
         )

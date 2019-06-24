@@ -8,7 +8,7 @@ class Leaderboard extends Component {
         if (authedUser === '') {
             this.props.history.push('/signin')
         }    
-        console.log('Leaderboard:', users)
+        // console.log('Leaderboard:', users)
         return (
             <div>
                 <h3 className='center'>Leadersborad!</h3>
@@ -41,7 +41,6 @@ class Leaderboard extends Component {
 }
 
 function mapStateToProps ({ authedUser, users }) {
-    
     return {
         authedUser,
         users

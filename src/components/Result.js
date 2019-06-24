@@ -32,32 +32,28 @@ class Result extends Component {
         // console.log('data:', data)
         return (
             <Fragment>
-                <div className='question-result'>
-                    <div>
-                        <h3>Would you rather...</h3>
-                        <hr />
-                        <p>{optionOne.text} : {optionOne.votes.length}</p>
-                        <p>{optionTwo.text} : {optionTwo.votes.length}</p>
-                        <PieChart width={300} height={300}>
-                            <Pie 
-                                nameKey="name"
-                                dataKey="value"
-                                isAnimationActive={false}
-                                data={data}
-                                cx="50%"
-                                cy="50%"
-                                outerRadius={80}
-                                fill="#8884d8"
-                                label={renderCustomizedLabel}
-                            >
-                                {
-                                    data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-                                }
-                            </Pie>
-                        </PieChart>
-                        <Tooltip />
-                    </div>
-                </div>
+                    <h3>Would you rather...</h3>
+                    <br />
+                    <p>1. {optionOne.text} : {optionOne.votes.length}</p>
+                    <p>2. {optionTwo.text} : {optionTwo.votes.length}</p>
+                    <PieChart width={300} height={300}>
+                        <Pie 
+                            nameKey="name"
+                            dataKey="value"
+                            isAnimationActive={false}
+                            data={data}
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={80}
+                            fill="#8884d8"
+                            label={renderCustomizedLabel}
+                        >
+                            {
+                                data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                            }
+                        </Pie>
+                    </PieChart>
+                    <Tooltip />
             </Fragment>
         )
     }

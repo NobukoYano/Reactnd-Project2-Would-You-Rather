@@ -6,7 +6,11 @@ import { withRouter } from 'react-router-dom'
 class Dashboard extends Component {
     render() {
         const {authedUser, questionIds} = this.props
-        if (authedUser === '') {
+        if (authedUser === null) {
+            return (
+                <p>here...</p>
+            )
+        } else if (authedUser === '') {
             this.props.history.push('/signin')
         }    
         return (

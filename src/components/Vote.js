@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 class Vote extends Component {
@@ -31,7 +31,7 @@ class Vote extends Component {
     render() {
         const { optionOne, optionTwo, } = this.props
         return (
-            <div>
+            <Fragment>
                 <h3>Would you rather...</h3>
                 <form onSubmit={this.handleSubmit}>
                     <div>
@@ -43,7 +43,7 @@ class Vote extends Component {
                                 checked={this.state.selectedOption === "optionOne"}
                                 onChange={this.handleChange}
                             />
-                            {optionOne.text}
+                            1: {optionOne.text}
                         </label>
                     </div>
 
@@ -56,12 +56,12 @@ class Vote extends Component {
                             checked={this.state.selectedOption === "optionTwo"}
                             onChange={this.handleChange}
                             />
-                            {optionTwo.text}
+                            2: {optionTwo.text}
                         </label>
                     </div>
 
                     <div>
-                        <button type="submit">
+                        <button type="submit" className="btn">
                             Save
                         </button>
                     </div>
@@ -77,7 +77,7 @@ class Vote extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form> */}
-            </div>
+            </Fragment>
         )
     }
 }

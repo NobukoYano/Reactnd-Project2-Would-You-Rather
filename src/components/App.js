@@ -8,7 +8,9 @@ import NewQuestion from './NewQuestion'
 import QuestionDetail from './QuestionDetail'
 import Leaderboard from './Leaderboard'
 import SignIn from './SignIn'
+import SignOut from './SignOut'
 import Nav from './Nav'
+import Header from './Header'
 
 class App extends Component {
   componentDidMount() {
@@ -19,18 +21,21 @@ class App extends Component {
       <Router>
         <Fragment>
           <LoadingBar />
-          <div className='container'>
-            <Nav />
             {this.props.loading === true
               ? null
-              : <div>
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/questions/:id' component={QuestionDetail} />
-                  <Route path='/add' component={NewQuestion} />
-                  <Route path='/leaderboard' component={Leaderboard} />
-                  <Route path='/signin' component={SignIn} />
+              : 
+                <div>
+                  {/* <Header /> */}
+                  <Nav /> 
+                  <div className='container'>
+                    <Route path='/' exact component={Dashboard} />
+                    <Route path='/questions/:id' component={QuestionDetail} />
+                    <Route path='/add' component={NewQuestion} />
+                    <Route path='/leaderboard' component={Leaderboard} />
+                    <Route path='/signin' component={SignIn} />
+                    <Route path='/signOut' component={SignOut} />
+                  </div>
                 </div>}
-          </div>
         </Fragment>
       </Router>
     )

@@ -34,7 +34,7 @@ class Question extends Component {
                         <p>{optionOne.text} ...</p>
                         <p>{optionTwo.text} ...</p>
                     </div>
-                    <button onClick={(e) => this.goQuestionDetail(e, id)} >Go to details</button>
+                    <button onClick={(e) => this.goQuestionDetail(e, id)} className='btn align-left'>Go to details</button>
                 </div>
                 {answered && (
                     <TiInputChecked className='question-answered'/>

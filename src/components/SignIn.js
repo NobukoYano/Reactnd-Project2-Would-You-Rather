@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { withRouter, Link } from 'react-router-dom'
+import logo from '../assets/images/logo.svg';
 
 const default_user = 'sarahedo'
 
@@ -11,7 +12,7 @@ class SignIn extends Component {
     }
     handleChange = (e) => {
         const id = e.target.value
-        console.log('onChange:', id)
+        // console.log('onChange:', id)
 
         this.setState(() => ({
             id
@@ -27,7 +28,7 @@ class SignIn extends Component {
         this.setState(() => ({
             id: default_user
         }))
-        this.props.history.goBack();
+        this.props.history.goBack() || this.props.history.push('/');
     }
     
     render() {
@@ -35,6 +36,8 @@ class SignIn extends Component {
         return (
             <Link to="/signin" className='signin'>
                 <form>
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <br /> 
                     <label>
                         <p>Please sign in as:</p>
                         <select onChange={this.handleChange}>
@@ -45,7 +48,8 @@ class SignIn extends Component {
                             ))}
                         </select>
                     </label>
-                    <button type="submit" onClick={this.handleSubmit}>Sign In</button>
+                    <br/>
+                    <button type="submit" className='btn' onClick={this.handleSubmit}>Sign In</button>
                 </form>
             </Link>
         )
