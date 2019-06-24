@@ -34,8 +34,8 @@ a {
   color: white;
   width: 200px;
   position: relative;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
 .btn:hover {

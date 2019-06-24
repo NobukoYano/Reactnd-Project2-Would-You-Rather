@@ -10,7 +10,7 @@ import Leaderboard from './Leaderboard'
 import SignIn from './SignIn'
 import SignOut from './SignOut'
 import Nav from './Nav'
-import Header from './Header'
+// import Header from './Header'
 
 class App extends Component {
   componentDidMount() {

@@ -10,6 +10,11 @@ class SignIn extends Component {
     state = {
         id: default_user,
     }
+    componentDidMount() {
+        if (this.props.authedUser !== '') {
+            this.props.history.push('/')
+        }
+    }
     handleChange = (e) => {
         const id = e.target.value
         // console.log('onChange:', id)
@@ -28,6 +33,7 @@ class SignIn extends Component {
         this.setState(() => ({
             id: default_user
         }))
+        // console.log('Signin history.goBack():', this.props.history.goBack())
         this.props.history.goBack() || this.props.history.push('/');
     }
     
@@ -56,9 +62,10 @@ class SignIn extends Component {
     }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ users, authedUser }) {
     return {
         users,
+        authedUser,
     }
 }
 

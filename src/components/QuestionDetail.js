@@ -32,7 +32,7 @@ class QuestionDetail extends Component {
             this.props.history.push('/signin')
         }
         if (question === null) {
-            return <p>This Question doesn't exist.</p>
+            return <p> 404 Not Found: This Question doesn't exist.</p>
         }
         const {
             name, avatar, timestamp, id, answered,
