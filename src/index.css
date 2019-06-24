@@ -186,6 +186,22 @@ li {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+.total-score {
+  margin: 0 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #4c78d8;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 7px;
+}
+
 .question-result {
   display: flex;
   flex-direction: row;

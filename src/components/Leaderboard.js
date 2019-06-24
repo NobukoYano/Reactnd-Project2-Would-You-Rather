@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
     render() {
-        const {authedUser, users} = this.props
+        const {authedUser, leaderBoards} = this.props
         if (authedUser === '') {
             this.props.history.push('/signin')
         }    
@@ -13,24 +13,22 @@ class Leaderboard extends Component {
             <div>
                 <h3 className='center'>Leadersborad!</h3>
                 <ul className='dashboard-list'>
-                    {Object.keys(users).map((key, index) =>(
-                        <li key={users[key].id}>
+                    {leaderBoards.map((user) =>(
+                        <li key={user.id}>
                             <div className='question'>
                                 <img
-                                    src={users[key].avatarURL}
-                                    alt={`Avatar of ${users[key].name}`}
+                                    src={user.avatar}
+                                    alt={`Avatar of ${user.name}`}
                                     className='avatar'
                                 />
                                 <div className='question-info'>
                                     <div>
-                                        <span>{users[key].name}</span>
-                                        <p>Answered Questions : {Object.keys(users[key].answers).length || 0}</p>
-                                        <p>Created Questions : {users[key].questions.length || 0}</p>
+                                        <span>{user.name}</span>
+                                        <p>Answered Questions : {user.answers}</p>
+                                        <p>Created Questions  : {user.questions}</p>
                                     </div>
                                 </div>
-                                <div>
-                                    <p>Total : </p>
-                                </div>
+                                <p className="total-score">{(user.answers+user.questions)}</p>
                             </div>
                         </li>
                     ))}
@@ -41,9 +39,22 @@ class Leaderboard extends Component {
 }
 
 function mapStateToProps ({ authedUser, users }) {
+    const leaderBoards = Object.keys(users).map((userId) =>{
+        return {
+            id: userId,
+            name: users[userId].name,
+            avatar: users[userId].avatarURL,
+            answers: Object.keys(users[userId].answers).length || 0,
+            questions: users[userId].questions.length || 0,
+        }
+    })
+    console.log('leaderboards:', leaderBoards)
     return {
         authedUser,
-        users
+        leaderBoards: leaderBoards.sort((a, b) =>
+            (b.answers + b.questions)
+            - (a.answers + a.questions)
+        )
     }
 }
 
