@@ -43,6 +43,7 @@ class NewQuestion extends Component {
         
         if (authedUser === '') {
             this.props.history.push('/signin')
+            // return <Redirect to='signin' />
         }    
 
         const { optionOne, optionTwo } = this.state

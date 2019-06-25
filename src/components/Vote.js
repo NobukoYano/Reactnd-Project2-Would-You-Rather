@@ -61,7 +61,11 @@ class Vote extends Component {
                     </div>
 
                     <div>
-                        <button type="submit" className="btn">
+                        <button 
+                            type="submit"
+                            className="btn"
+                            disabled={ this.state.selectedOption === '' }
+                        >
                             Save
                         </button>
                     </div>

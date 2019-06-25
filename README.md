@@ -3,6 +3,15 @@
 This is my solution for the Would You Rather App for Udacity's React Redux course. 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## How to start App
+
+To get started the application:
+
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
+
+
 ## State managed by Store
 
 Following state is managed by store:
