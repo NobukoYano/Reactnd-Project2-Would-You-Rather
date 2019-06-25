@@ -265,7 +265,7 @@ input[name="tab_item"] {
   display: none;
 }
 
-.tab_content {
+/* .tab_content {
   display: none;
   padding: 40px 40px 0;
   clear: both;
@@ -273,13 +273,12 @@ input[name="tab_item"] {
 }
 
 
-#all:checked ~ #all_content,
-#programming:checked ~ #programming_content,
-#design:checked ~ #design_content {
+#unanswered:checked ~ #unanswered_content,
+#answered:checked ~ #answered_content {
   display: block;
 }
 
 .tabs input:checked + .tab_item {
   background-color: #5ab4bd;
-  color: #fff;
-}
+  color: #fff; 
+}*/

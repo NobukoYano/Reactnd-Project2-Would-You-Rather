@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
 import { withRouter } from 'react-router-dom'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 class Dashboard extends Component {
     componentDidMount() {
@@ -18,25 +19,36 @@ class Dashboard extends Component {
         const {answeredId, unansweredId} = this.props
         return (
             <Fragment>
-                <h2 className='center'>All Questions</h2>
-                <hr />
-                <h3 className='center'>Unanswered question(s)</h3>
-                <ul>
-                    {unansweredId.map((id) =>(
-                        <li key={id}>
-                            <Question id={id}></Question>
-                        </li>
-                    ))}
-                </ul>
-                <hr/>
-                <h3 className='center'>Answered question(s)</h3>
-                <ul>
-                    {answeredId.map((id) =>(
-                        <li key={id}>
-                            <Question id={id}></Question>
-                        </li>
-                    ))}
-                </ul>    
+                <h3 className='center'>All Questions</h3>
+                <Tabs
+                    onSelect={this.handleSelect}
+                    selectedIndex={1}
+                >
+
+                    <TabList>
+                        <Tab>Unanswered</Tab>
+                        <Tab>Answered</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                        <ul>
+                            {unansweredId.map((id) =>(
+                                <li key={id}>
+                                    <Question id={id}></Question>
+                                </li>
+                            ))}
+                        </ul>
+                    </TabPanel>
+                    <TabPanel>
+                        <ul>
+                            {answeredId.map((id) =>(
+                                <li key={id}>
+                                    <Question id={id}></Question>
+                                </li>
+                            ))}
+                        </ul>    
+                    </TabPanel>                            
+                </Tabs>
             </Fragment>
         )
     }
