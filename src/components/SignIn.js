@@ -12,7 +12,7 @@ class SignIn extends Component {
     }
     componentDidMount() {
         if (this.props.authedUser !== '') {
-            this.props.history.push('/')
+            this.props.history.goBack() || this.props.history.push('/')
         }
     }
     handleChange = (e) => {
