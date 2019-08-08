@@ -3,6 +3,7 @@
 This is my solution for the Would You Rather App for Udacity's React Redux course. 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+new branch
 
 ## How to start App
 
